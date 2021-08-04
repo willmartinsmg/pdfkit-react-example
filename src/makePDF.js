@@ -1,59 +1,46 @@
 module.exports = (PDFDocument, blobStream, lorem, iframe) => {
   // create a document and pipe to a blob
-  var doc = new PDFDocument();
+  var doc = new PDFDocument({layout: 'landscape'});
   var stream = doc.pipe(blobStream());
+
+  doc.image('images/fundo_certificado.png', 0,0, {width: doc.page.width, height: doc.page.height});
+
+  doc.image('images/logo_coelhodiniz.jpg', 25, 20, {width: 220})
+  // doc.image('images/logo_sesmt.png', 25, 400, {width: 220})
 
   doc.registerFont('Roboto', 'fonts/Roboto-Regular.ttf')
 
   // draw some text
-  doc.fontSize(25).text('Here is some vector graphics...', 100, 80);
+  doc.font('Helvetica-Bold')
+  doc.fontSize(18).text('Serviço Especializado em Engenharia de Segurança e Medicina do Trabalho', 60, 80);
+  doc.text('SESMT', 0 ,112, { width: 800, align: 'center'})
 
-  // some vector graphics
-  doc
-    .save()
-    .moveTo(100, 150)
-    .lineTo(100, 250)
-    .lineTo(200, 250)
-    .fill('#FF3300');
+  doc.font('Helvetica')
+  doc.text('Certifica que', 0 ,138, { width: 800, align: 'center'})
 
-  doc.circle(280, 200, 50).fill('#6600FF');
+  doc.font('Helvetica-Bold')
+  doc.text('DAVI GARCIA PEREIRA DE ASSIS', 0 ,168, { width: 800, align: 'center'})
 
-  // an SVG path
-  doc
-    .scale(0.6)
-    .translate(470, 130)
-    .path('M 250,75 L 323,301 131,161 369,161 177,301 z')
-    .fill('red', 'even-odd')
-    .restore();
+  doc.font('Helvetica')
+  doc.text('participou do Treinamento ', 0 ,196, { width: 800, align: 'center'})
 
-  // and some justified text wrapped into columns
-  doc
-    .font('Roboto')
-    .text('And here is some wrapped text...', 100, 300)
-    .fontSize(13)
-    .moveDown()
-    .text(lorem, {
-      width: 412,
-      align: 'justify',
-      indent: 30,
-      columns: 2,
-      height: 300,
-      ellipsis: true
-    });
+  doc.font('Helvetica-Bold')
+  doc.text('EPI(Equipamento de Proteção Individual)', 0 ,260, { width: 800, align: 'center'})
 
-  doc.addPage();
+  doc.font('Helvetica')
+  doc.text('realizado pelo Supermercado Coelho Diniz no período de', 0 ,290, { width: 800, align: 'center'})
+  doc.text('19/02/2021 até 19/02/2021 com carga horária de 001:00 .', 0 ,320, { width: 800, align: 'center'})
 
-  doc
-    .fontSize(25)
-    .font('Courier')
-    .text('And an image...')
-    .image('images/bee.png')
+  doc.text('Caratinga, 19 de Fevereiro de 2021', 0, 380, { width: 700, align: 'right'})
 
-  doc
-    .font('Courier-Bold')
-    .text('Finish...')
+  doc.moveTo(250, 450) 
+   .lineTo(550, 450)
+   .stroke();
+ 
+doc.font('Helvetica-Bold')
+doc.fontSize(14).text('DAVI GARCIA PEREIRA DE ASSIS ', 0 ,460, { width: 800, align: 'center'})
 
-  // end and display the document in the iframe to the right
+
   doc.end();
   stream.on('finish', function () {
     iframe.src = stream.toBlobURL('application/pdf');
