@@ -22,8 +22,8 @@ module.exports = (PDFDocument, blobStream, lorem, iframe) => {
   doc.image('images/logo_coelhodiniz.jpg', 25, 20, {width: 100})
 
   doc.font('Helvetica-Bold')
-  doc.fontSize(12).text('ORDEM DE SERVIÇOS (O.S.)', 0, 20, { width: 650, align: 'center'});
-  doc.text('POR ATIVIDADE', 0 ,35, { width: 650, align: 'center'})
+  doc.fontSize(12).text('PROCEDIMENTOS DE SEGURANÇA NO MANUSEIO', 0, 20, { width: 650, align: 'center'});
+  doc.text('E OPERAÇÃO DE MÁQUINAS E EQUIPAMENTOS', 0 ,35, { width: 650, align: 'center'})
 
   doc.moveTo(20, 65) 
     .lineTo(580, 65)
