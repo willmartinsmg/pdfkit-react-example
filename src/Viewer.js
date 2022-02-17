@@ -28,7 +28,7 @@ const Viewer = ({ value }) => {
         }
     }, [value, iframe]);
 
-    return <iframe title="preview" ref={iframe} width="900" height="775"></iframe>;
+    return <iframe title="preview" ref={iframe} width="900" height="1200"></iframe>;
 }
 
 export default Viewer
