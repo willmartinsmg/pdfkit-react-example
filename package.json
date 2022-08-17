@@ -12,6 +12,7 @@
     "brace": "^0.11.1",
     "node-sass": "^4.14.1",
     "pdfkit": "^0.10.0",
+    "pdfkit-table": "^0.1.99",
     "react": "^16.13.1",
     "react-ace": "^9.1.1",
     "react-dom": "^16.13.1",

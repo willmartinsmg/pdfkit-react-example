@@ -14,6 +14,8 @@ const Editor = ({value, onChange}) => {
         name="editor"
         value={value}
         editorProps={{ $blockScrolling: true }}
+        // width={400}
+        // maxLines={400}
     />)
 }
 
